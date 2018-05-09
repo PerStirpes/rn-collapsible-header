@@ -54,9 +54,29 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <View style={styles.header}>
+          <Animated.Image source={CF} style={[styles.image, imageStyle]} />
+          <Animated.View style={[styles.buttons, fadeButtonStyle]}>
+            <View style={styles.button}>
+              <Text>I'm a Button</Text>
+            </View>
+            <View style={styles.button}>
+              <Text>I'm a Button</Text>
+            </View>
+          </Animated.View>
+        </View>
+        <View style={styles.scrollView}>
+          <ScrollView
+            scrollEventThrottle={16}
+            onScroll={Animated.event([
+              { nativeEvent: { contentOffset: { y: this.animated } } }
+            ])}
+          >
+            <View style={styles.fakeContent}>
+              <Text style={styles.fakeText}>Top</Text>
+            </View>
+          </ScrollView>
+        </View>
       </View>
     )
   }
@@ -70,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   fakeContent: {
-    heifht: 1000,
+    height: 1000,
     backgroundColor: "#4A89DC"
   },
   fakeText: {
